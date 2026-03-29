@@ -1,0 +1,20 @@
+{
+    "name": "@baseadmin-air/mock-server",
+    "version": "2.3.6",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "tsx watch ./src/index.ts",
+        "build": "tsc --project ./tsconfig.json --noEmit",
+        "start": "tsx ./src/index.ts"
+    },
+    "dependencies": {
+        "@hono/node-server": "1.19.11",
+        "hono": "4.12.9"
+    },
+    "devDependencies": {
+        "@types/node": "25.5.0",
+        "tsx": "4.21.0",
+        "typescript": "6.0.2"
+    }
+}
