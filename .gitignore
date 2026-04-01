@@ -6,6 +6,11 @@ web/node_modules/
 web/dist/
 server/node_modules/
 server/dist/
+server/.env
+server/drizzle/*
+!server/drizzle/
+!server/drizzle/*.sql
+server/uploads/
 
 .DS_Store
 Thumbs.db

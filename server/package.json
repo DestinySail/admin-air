@@ -3,7 +3,12 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "tsx watch ./src/index.ts",
+        "dev": "tsx ./src/scripts/dev.ts",
+        "dev:raw": "tsx watch ./src/index.ts",
+        "db:generate": "drizzle-kit generate",
+        "db:migrate": "tsx ./src/db/migrate.ts",
+        "db:seed": "tsx ./src/db/seed.ts",
+        "db:setup": "tsx ./src/db/setup.ts",
         "build": "tsc --project ./tsconfig.json --noEmit",
         "start": "tsx ./src/index.ts",
         "lint": "eslint .",
@@ -12,11 +17,17 @@
     },
     "dependencies": {
         "@hono/node-server": "1.19.11",
-        "hono": "4.12.9"
+        "dotenv": "^17.3.1",
+        "drizzle-orm": "^0.45.2",
+        "hono": "4.12.9",
+        "jose": "^6.2.2",
+        "postgres": "^3.4.8",
+        "zod": "^4.3.6"
     },
     "devDependencies": {
         "@eslint/js": "10.0.1",
         "@types/node": "25.5.0",
+        "drizzle-kit": "^0.31.10",
         "eslint": "10.1.0",
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-prettier": "5.5.5",

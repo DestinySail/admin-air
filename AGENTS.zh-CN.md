@@ -2,10 +2,10 @@
 
 ## 重要说明
 
-- 英文文档 `AGENTS.md` 是本仓库协作说明的权威来源。
+- 英文文档 `AGENTS.md` 是本仓库指导说明的权威来源。
 - `AGENTS.zh-CN.md` 仅作为给人类读者参考的中文镜像。
 - 工具和代理在执行任务时必须遵循英文版 `AGENTS.md`。
-- 如果英文版与中文版出现差异，一律以英文版为准。
+- 如果英文版与中文版存在差异，一律以英文版为准。
 - 任意一份文档更新后，都必须同步维护另一份文档。
 
 ## 角色
@@ -13,13 +13,13 @@
 作为这个仓库的务实型编码代理开展工作。优先遵循仓库中已经存在的源码与配置约定，而不是套用通用模板。这个仓库在同一个 Git 仓库中维护两个独立的 `pnpm` 项目：
 
 - `web`：Vue 3 + TypeScript + Vite 的管理端前端
-- `server`：本地开发和接口模拟使用的 Hono + TypeScript 后端服务
+- `server`：用于本地开发和前后端联调的 Hono + TypeScript 后端项目
 
 优先做小而准的改动。修改前先阅读相关实现与配置，确保新改动延续仓库现有模式。
 
 ## 文档系统
 
-- 把这份文件当作快速导航，而不是完整百科。
+- 把这份文档当作快速导航，而不是完整百科。
 - 把源码和可执行配置视为行为层面的第一事实来源。
 - 把 `docs/` 视为仓库知识库，用来沉淀应该同时被人和 agent 发现的长期上下文。
 - 把 `CLAUDE.md` 视为次级说明，使用前需要与源码核对。
@@ -63,15 +63,15 @@
 - 保持 Vue 导入继续使用现有的 `/@` 别名风格。
 - 除非任务明确要求，否则保持 `createWebHashHistory()` 路由机制不变。
 - API 请求优先复用 `web/src/utils/axios.ts`，不要绕开统一封装。
-- 延续现有 Pinia store 结构与 `pinia-plugin-persistedstate` 的使用方式。
+- 延续现有 Pinia store 结构和 `pinia-plugin-persistedstate` 的使用方式。
 - 保持现有鉴权流程不变：需要登录的路由在没有 token 时跳转到 `adminLogin`。
 
 修改 API 行为或数据契约时：
 
-- 必要时同步更新 `server/src/index.ts` 与 `server/src/mock-data.ts`。
-- Mock API 响应保持 `{ code, msg, data }` 结构。
-- 除非任务明确要求持久化，否则保持 mock server 为内存实现。
-- 优先复用现有搜索、排序、分页和树结构辅助逻辑，不要并行再造一套。
+- 必要时同步更新相关 Hono 路由模块、数据库 schema 与引导 seed 数据。
+- 除非任务明确要求改变契约，否则 API 响应继续保持 `{ code, msg, data }` 结构。
+- 优先使用现有 PostgreSQL + Drizzle 持久化流程，不要回退为临时内存状态。
+- 复用已有的搜索、排序、分页和树结构辅助逻辑，不要并行再造一套。
 
 ## 工具与命令
 
@@ -92,6 +92,9 @@
 - `pnpm install`
 - `pnpm dev`
 - `pnpm start`
+- `pnpm db:migrate`
+- `pnpm db:seed`
+- `pnpm db:setup`
 - `pnpm build`
 - `pnpm lint`
 - `pnpm lint-fix`
@@ -104,6 +107,9 @@
 - Vite 会将 `/api` 和 `/admin` 代理到 `http://127.0.0.1:8787`
 - 前端端口由 `VITE_PORT` 控制
 - 后端端口由 `PORT` 控制，默认 `8787`
+- 后端环境变量放在 `server/.env`
+- 数据库迁移文件位于 `server/drizzle/`
+- 本地开发默认通过 `DATABASE_URL` 连接 PostgreSQL
 
 ## 编码规范
 

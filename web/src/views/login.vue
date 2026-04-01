@@ -11,13 +11,13 @@
                 <div class="form">
                     <img class="profile-avatar" :src="fullUrl('/static/images/avatar.png')" alt="" />
                     <div class="content">
-                        <el-form @keyup.enter="onSubmitPre()" ref="formRef" :rules="rules" size="large" :model="form">
+                        <el-form ref="formRef" :rules="rules" size="large" :model="form" @keyup.enter="onSubmitPre()">
                             <el-form-item prop="username">
                                 <el-input
                                     ref="usernameRef"
+                                    v-model="form.username"
                                     type="text"
                                     clearable
-                                    v-model="form.username"
                                     :placeholder="t('login.Please enter an account')"
                                 >
                                     <template #prefix>
@@ -60,7 +60,6 @@
 </template>
 
 <script setup lang="ts">
-import { ElNotification } from 'element-plus'
 import { nextTick, onBeforeUnmount, onMounted, reactive, useTemplateRef } from 'vue'
 import * as pageBubble from '/@/utils/pageBubble'
 import { login } from '/@/api/backend'
@@ -85,9 +84,10 @@ const passwordRef = useTemplateRef('passwordRef')
 const state = reactive({
     submitLoading: false,
 })
+
 const form = reactive({
     username: 'admin',
-    password: '123456',
+    password: 'AdminAir_2026',
     keep: false,
 })
 
@@ -138,12 +138,7 @@ const onSubmit = () => {
             )
             router.push({ path: '/' })
         })
-        .catch(() => {
-            ElNotification({
-                type: 'error',
-                message: '固定账号：admin / 123456',
-            })
-        })
+        .catch(() => undefined)
         .finally(() => {
             state.submitLoading = false
         })

@@ -7,7 +7,7 @@ This file provides secondary guidance for repository work. Prefer `AGENTS.md` an
 This repository now contains two independent projects inside one Git repository:
 
 - `web/`: Vue 3 + TypeScript + Vite admin frontend
-- `server/`: Hono + TypeScript mock/backend service
+- `server/`: Hono + TypeScript backend project
 - `docs/`: project documentation
 
 The root directory no longer acts as a `pnpm` workspace and no longer provides shared Node scripts.
@@ -34,6 +34,6 @@ Run backend commands inside `server/`:
 
 - Frontend routing uses `createWebHashHistory()`
 - Frontend API requests go through `web/src/utils/axios.ts`
-- Backend mock data lives in `server/src/mock-data.ts`
+- Backend bootstrap seed data lives in `server/src/bootstrap/bootstrap-data.ts`
 - Vite still proxies `/api` and `/admin` to `http://127.0.0.1:8787`
-- Backend remains an in-memory service unless a task explicitly asks for persistence
+- Backend uses PostgreSQL + Drizzle for persistence

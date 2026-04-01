@@ -1,9 +1,9 @@
-export type MockRuleType = 'menu_dir' | 'menu' | 'button'
+export type RuleType = 'menu_dir' | 'menu' | 'button'
 
-export interface MockRuleItem {
+export interface BootstrapRule {
     id: number
     pid: number
-    type: MockRuleType
+    type: RuleType
     title: string
     name: string
     path: string
@@ -21,7 +21,7 @@ export interface MockRuleItem {
     buttons?: string[]
 }
 
-export interface MockAdminItem {
+export interface BootstrapAdmin {
     id: number
     username: string
     nickname: string
@@ -34,9 +34,10 @@ export interface MockAdminItem {
     status: 'enable' | 'disable'
     last_login_time: string
     create_time: string
+    super: boolean
 }
 
-export interface MockGroupItem {
+export interface BootstrapGroup {
     id: number
     pid: number
     name: string
@@ -46,7 +47,7 @@ export interface MockGroupItem {
     update_time: string
 }
 
-export interface MockAdminLogItem {
+export interface BootstrapAdminLog {
     id: number
     admin_id: number
     username: string
@@ -58,7 +59,7 @@ export interface MockAdminLogItem {
     data: string
 }
 
-export interface MockAttachmentItem {
+export interface BootstrapAttachment {
     id: number
     topic: string
     url: string
@@ -113,35 +114,21 @@ export const siteConfig = {
     userInitialize: true,
 }
 
-export const initialAdminProfile = {
-    id: 1,
-    username: 'admin',
-    nickname: '管理员',
-    avatar: '/static/images/avatar.png',
-    email: 'admin@example.com',
-    mobile: '13800000000',
-    motto: '保持专注，持续交付。',
-    password: '',
-    last_login_time: '2026-03-29 10:00:00',
-    token: 'mock-admin-token',
-    refresh_token: 'mock-admin-refresh-token',
-    super: false,
-}
-
-export const initialAdmins: MockAdminItem[] = [
+export const initialAdmins: BootstrapAdmin[] = [
     {
         id: 1,
         username: 'admin',
-        nickname: '管理员',
+        nickname: '系统管理员',
         avatar: '/static/images/avatar.png',
         email: 'admin@example.com',
         mobile: '13800000000',
         motto: '保持专注，持续交付。',
-        password: '123456',
+        password: 'AdminAir_2026',
         group_arr: [1],
         status: 'enable',
         last_login_time: '2026-03-29 10:00:00',
         create_time: '2026-03-01 09:00:00',
+        super: true,
     },
     {
         id: 2,
@@ -151,15 +138,16 @@ export const initialAdmins: MockAdminItem[] = [
         email: 'editor@example.com',
         mobile: '13800000001',
         motto: '负责内容维护。',
-        password: '123456',
+        password: 'EditorAir_2026',
         group_arr: [2],
         status: 'enable',
         last_login_time: '2026-03-28 17:20:00',
         create_time: '2026-03-05 10:00:00',
+        super: false,
     },
 ]
 
-export const initialGroups: MockGroupItem[] = [
+export const initialGroups: BootstrapGroup[] = [
     {
         id: 1,
         pid: 0,
@@ -180,7 +168,7 @@ export const initialGroups: MockGroupItem[] = [
     },
 ]
 
-export const initialRules: MockRuleItem[] = [
+export const initialRules: BootstrapRule[] = [
     {
         id: 1,
         pid: 0,
@@ -465,7 +453,7 @@ export const initialRules: MockRuleItem[] = [
     },
 ]
 
-export const initialAdminLogs: MockAdminLogItem[] = [
+export const initialAdminLogs: BootstrapAdminLog[] = [
     {
         id: 1,
         admin_id: 1,
@@ -473,7 +461,7 @@ export const initialAdminLogs: MockAdminLogItem[] = [
         title: '登录后台',
         url: '/api/auth/login',
         ip: '127.0.0.1',
-        useragent: 'Mock Browser',
+        useragent: 'Seed Browser',
         create_time: '2026-03-29 10:00:00',
         data: JSON.stringify({ username: 'admin' }),
     },
@@ -481,16 +469,16 @@ export const initialAdminLogs: MockAdminLogItem[] = [
         id: 2,
         admin_id: 1,
         username: 'admin',
-        title: '更新布局配置',
+        title: '加载后台初始化数据',
         url: '/api/admin/init',
         ip: '127.0.0.1',
-        useragent: 'Mock Browser',
+        useragent: 'Seed Browser',
         create_time: '2026-03-29 10:05:00',
         data: JSON.stringify({ layoutMode: 'Default' }),
     },
 ]
 
-export const initialAttachments: MockAttachmentItem[] = [
+export const initialAttachments: BootstrapAttachment[] = [
     {
         id: 1,
         topic: '管理员头像',

@@ -5,7 +5,7 @@ This repository keeps two independent projects in a single Git repository. Use t
 ```text
 admin-air
 |- web/                # Vue 3 + TypeScript + Vite frontend
-|- server/             # Hono + TypeScript mock/backend service
+|- server/             # Hono + TypeScript backend project
 |- docs/               # repository knowledge base
 |- AGENTS.md           # authoritative agent-facing entry point
 |- AGENTS.zh-CN.md     # human-readable Chinese mirror
@@ -20,14 +20,17 @@ admin-air
 - Frontend request wrapper: `web/src/utils/axios.ts`
 - Frontend global styles: `web/src/styles/index.scss`
 - Frontend build and proxy config: `web/vite.config.ts`
-- Backend API handlers: `server/src/index.ts`
-- Backend mock seed data: `server/src/mock-data.ts`
+- Backend server entry: `server/src/index.ts`
+- Backend app wiring: `server/src/app.ts`
+- Backend route modules: `server/src/modules/`
+- Backend database schema: `server/src/db/schema/`
+- Backend bootstrap seed data: `server/src/bootstrap/bootstrap-data.ts`
 
 ## Read Path By Change Type
 
 - Frontend UI or routing change: start in `web/src/router/`, the target view, store, or shared utility
 - API client change: start in `web/src/utils/axios.ts` and the consuming feature
-- Backend mock or response-shape change: start in `server/src/index.ts` and `server/src/mock-data.ts`
+- Backend API or response-shape change: start in `server/src/modules/`, `server/src/db/schema/`, and `server/src/bootstrap/bootstrap-data.ts`
 - Build or proxy change: start in `web/vite.config.ts`
 - Workflow or repository guidance change: start in `AGENTS.md` and the matching page in `docs/`
 

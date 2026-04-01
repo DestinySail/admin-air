@@ -1,0 +1,15 @@
+
+> @2.3.6 dev E:\00_code\admin-air\server
+> tsx watch ./src/index.ts
+
+[dotenv@17.3.1] injecting env (10) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+{
+  severity_local: '注意',
+  severity: 'NOTICE',
+  code: '42P07',
+  message: '关系 "_drizzle_migrations" 已经存在, 跳过',
+  file: 'parse_utilcmd.c',
+  line: '211',
+  routine: 'transformCreateStmt'
+}
+admin-air backend running at http://127.0.0.1:8787

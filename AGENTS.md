@@ -13,7 +13,7 @@
 Act as a pragmatic coding agent for this repository. Prefer the conventions already present in source and config over generic templates. This repository contains two independent `pnpm` projects in a single Git repository:
 
 - `web`: a Vue 3 + TypeScript + Vite admin frontend
-- `server`: a Hono + TypeScript mock/backend service used for local development and API simulation
+- `server`: a Hono + TypeScript backend project for local development and frontend integration
 
 Prefer small, targeted changes. Read nearby implementation and configuration before editing so new work matches local patterns.
 
@@ -68,9 +68,9 @@ When changing the frontend:
 
 When changing API behavior or data contracts:
 
-- Update both `server/src/index.ts` and `server/src/mock-data.ts` when needed.
-- Keep mock API responses in the `{ code, msg, data }` shape.
-- Keep the mock server in-memory unless a task explicitly asks for persistence.
+- Update the relevant Hono route modules, database schema, and bootstrap seed data together when needed.
+- Keep API responses in the `{ code, msg, data }` shape unless the task explicitly changes the contract.
+- Prefer the existing PostgreSQL + Drizzle persistence flow over ad-hoc in-memory state.
 - Reuse the existing search, sort, pagination, and tree helpers instead of introducing parallel implementations.
 
 ## Tools And Commands
@@ -92,6 +92,9 @@ Backend commands run inside `server/`:
 - `pnpm install`
 - `pnpm dev`
 - `pnpm start`
+- `pnpm db:migrate`
+- `pnpm db:seed`
+- `pnpm db:setup`
 - `pnpm build`
 - `pnpm lint`
 - `pnpm lint-fix`
@@ -104,6 +107,9 @@ Useful runtime details:
 - Vite proxies `/api` and `/admin` to `http://127.0.0.1:8787`
 - Frontend port is controlled by `VITE_PORT`
 - Backend port is controlled by `PORT`, default `8787`
+- Backend environment lives in `server/.env`
+- Database migrations live in `server/drizzle/`
+- Local development expects PostgreSQL via `DATABASE_URL`
 
 ## Coding Standards
 
