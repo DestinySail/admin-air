@@ -6,17 +6,12 @@ import globals from 'globals'
 import ts from 'typescript-eslint'
 
 export default [
-    // 三大基本推荐规则
     js.configs.recommended,
     ...ts.configs.recommended,
     ...eslintPluginVue.configs['flat/recommended'],
-
-    // 忽略规则
     {
         ignores: ['**/node_modules/**', '**/dist/**', '**/public/**'],
     },
-
-    // 全局变量
     {
         languageOptions: {
             globals: {
@@ -24,27 +19,19 @@ export default [
             },
         },
     },
-
-    // vue
     {
         files: ['**/*.vue'],
         languageOptions: {
             parserOptions: {
-                // ts 解析器
                 parser: ts.parser,
-                // 允许 jsx
                 ecmaFeatures: {
                     jsx: true,
                 },
             },
         },
     },
-
-    // eslint + prettier 的兼容性问题解决规则
     eslintConfigPrettier,
     eslintPluginPrettierRecommended,
-
-    // ts
     {
         files: ['**/*.{ts,tsx,vue}'],
         rules: {
@@ -58,7 +45,6 @@ export default [
             'no-case-declarations': 'off',
             'no-console': 'off',
             'no-control-regex': 'off',
-
             'vue/v-on-event-hyphenation': 'off',
             'vue/custom-event-name-casing': 'off',
             'vue/component-definition-name-casing': 'off',
@@ -77,7 +63,6 @@ export default [
             'vue/multi-word-component-names': 'off',
             'vue/require-prop-types': 'off',
             'vue/html-indent': 'off',
-
             '@typescript-eslint/no-unsafe-function-type': 'off',
             '@typescript-eslint/no-empty-function': 'off',
             '@typescript-eslint/no-explicit-any': 'off',
@@ -92,15 +77,13 @@ export default [
             ],
         },
     },
-
-    // prettier 规则
     {
         files: ['**/*.{ts,tsx,vue,js}'],
         rules: {
             'prettier/prettier': [
-                'warn', // 使用警告而不是错误
+                'warn',
                 {
-                    endOfLine: 'auto', // eslint 无需检查文件换行符
+                    endOfLine: 'auto',
                 },
             ],
         },
