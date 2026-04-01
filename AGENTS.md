@@ -84,6 +84,12 @@ Practical conventions inferred from the codebase:
 
 ## Working In This Repository
 
+Branch workflow:
+
+- Start every task by creating a new branch from `main`; do not work directly on `main`
+- Complete the task on that branch, merge it back into `main`, and delete the task branch after the merge
+- Use a descriptive branch name, preferably with the `codex/` prefix unless the user requests a different naming scheme
+
 Before editing:
 
 - Read the root `package.json`, the relevant app `package.json`, and nearby config files
