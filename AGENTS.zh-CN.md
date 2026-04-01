@@ -10,12 +10,27 @@
 
 ## 角色
 
-作为这个仓库的务实型编码代理开展工作。优先遵循仓库中已经存在的源码与配置约定，而不是套用通用模板。这个仓库现在是在同一个 Git 仓库中维护两个独立的 `pnpm` 项目：
+作为这个仓库的务实型编码代理开展工作。优先遵循仓库中已经存在的源码与配置约定，而不是套用通用模板。这个仓库在同一个 Git 仓库中维护两个独立的 `pnpm` 项目：
 
 - `web`：Vue 3 + TypeScript + Vite 的管理端前端
 - `server`：本地开发和接口模拟使用的 Hono + TypeScript 后端服务
 
 优先做小而准的改动。修改前先阅读相关实现与配置，确保新改动延续仓库现有模式。
+
+## 文档系统
+
+- 把这份文件当作快速导航，而不是完整百科。
+- 把源码和可执行配置视为行为层面的第一事实来源。
+- 把 `docs/` 视为仓库知识库，用来沉淀应该同时被人和 agent 发现的长期上下文。
+- 把 `CLAUDE.md` 视为次级说明，使用前需要与源码核对。
+- 当某条规则已经重要到需要强制执行时，优先把它编码进配置、脚本、lint 或构建检查，而不是只停留在文字说明里。
+
+在进行较大改动前，优先阅读这些文档：
+
+- `docs/index.md`：文档地图与事实来源顺序
+- `docs/repository-structure.md`：仓库结构、关键文件与进入点
+- `docs/development-workflow.md`：命令、验证与交付约定
+- `docs/agent-working-guide.md`：让文档和 agent 上下文保持可读、可维护的仓库内规则
 
 ## 仓库概览
 
@@ -26,18 +41,37 @@
 - 后端技术栈：Hono、`@hono/node-server`、TypeScript、`tsx`
 - 质量工具：ESLint flat config、Prettier、`vue-tsc`、`tsc`
 
-重点文件与目录：
+## 在本仓库中的工作方式
 
-- `web/src/main.ts`：应用启动、Pinia、router、Element Plus、指令、图标、主题初始化
-- `web/src/router/index.ts`：hash 路由与鉴权守卫
-- `web/src/stores`：Pinia store 与持久化插件用法
-- `web/src/utils/axios.ts`：统一 Axios 封装、token 处理、重复请求取消、通知提示
-- `web/src/styles/index.scss`：全局样式入口
-- `web/vite.config.ts`：`/@` 别名、代理配置、分包策略
-- `server/src/index.ts`：内存型 mock API、筛选、排序、分页、树结构辅助、统一响应结构
-- `server/src/mock-data.ts`：mock 种子数据与默认站点、布局配置
-- `docs`：补充文档目录；可运行源码与配置仍然是第一事实来源
-- `CLAUDE.md`：次级协作说明，使用前应先与源码核对
+分支工作流：
+
+- 每次任务开始前，都要从 `main` 创建一个新的分支；不要直接在 `main` 上工作。
+- 所有改动都应在这个任务分支上完成；任务结束后将其合并回 `main`，并删除该任务分支。
+- 分支名应清晰描述任务内容；除非用户另有要求，优先使用 `codex/` 前缀。
+
+修改前：
+
+- 先阅读目标项目目录中的 `package.json` 以及相关配置文件。
+- 判断改动属于 `web`、`server`，还是两端联动。
+- 在改变模式、命名或结构前，先阅读最接近需求的实现文件。
+- 可以查看协作文档，但如果文字说明与源码冲突，应以源码和配置为准。
+- 如果改动影响长期有效的行为或流程，请同步更新 `docs/` 中对应页面，而不是只改这份入口文档。
+
+修改前端时：
+
+- 从最接近需求的 route、view、store 或 shared utility 入手。
+- 保持 Vue 导入继续使用现有的 `/@` 别名风格。
+- 除非任务明确要求，否则保持 `createWebHashHistory()` 路由机制不变。
+- API 请求优先复用 `web/src/utils/axios.ts`，不要绕开统一封装。
+- 延续现有 Pinia store 结构与 `pinia-plugin-persistedstate` 的使用方式。
+- 保持现有鉴权流程不变：需要登录的路由在没有 token 时跳转到 `adminLogin`。
+
+修改 API 行为或数据契约时：
+
+- 必要时同步更新 `server/src/index.ts` 与 `server/src/mock-data.ts`。
+- Mock API 响应保持 `{ code, msg, data }` 结构。
+- 除非任务明确要求持久化，否则保持 mock server 为内存实现。
+- 优先复用现有搜索、排序、分页和树结构辅助逻辑，不要并行再造一套。
 
 ## 工具与命令
 
@@ -78,45 +112,8 @@
 - `.editorconfig`：UTF-8、LF、空格缩进，默认 4 空格
 - `web/.prettierrc.js` 与 `server/.prettierrc.js`：不加分号、单引号、`printWidth: 150`、`trailingComma: 'es5'`
 - `web/eslint.config.js` 与 `server/eslint.config.js`：TypeScript + Prettier 的 flat config；前端配置额外包含 Vue 规则
-
-从代码中归纳出的实用约定：
-
-- 新逻辑优先使用 TypeScript
-- 实现 Vue 相关代码时使用可用的 Vue Skills，并优先遵循这些与仓库兼容的实践，而不是泛化的框架建议
-- 保持 Vue 导入继续使用现有的 `@/` 别名风格
-- 除非任务明确要求，否则保持 `createWebHashHistory()` 路由机制不变
-- API 请求优先复用 `web/src/utils/axios.ts`，不要绕开统一封装
-- 延续现有 Pinia store 结构与 `pinia-plugin-persistedstate` 的使用方式
-- Mock API 响应保持 `{ code, msg, data }` 结构
-
-## 在本仓库中的工作方式
-
-分支工作流：
-
-- 每次任务开始前，都要从 `main` 创建一个新的分支；不要直接在 `main` 上工作
-- 所有改动都应在这个任务分支上完成；任务结束后将其合并回 `main`，并删除该任务分支
-- 分支名应清晰描述任务内容；除非用户另有要求，优先使用 `codex/` 前缀
-
-修改前：
-
-- 先阅读目标项目目录中的 `package.json` 以及相关配置文件
-- 判断改动属于 `web`、`server`，还是两端联动
-- 查看已有协作文档，例如 `CLAUDE.md`，但如果它与源码冲突，应以源码和配置为准
-- 在改变模式、命名或结构前，先阅读周边实现
-
-修改前端时：
-
-- 从最接近需求的 route、view、store 或 shared utility 入手
-- 保持现有鉴权流程不变：需要登录的路由在没有 token 时跳转到 `adminLogin`
-- 保持 `web/src/router/index.ts` 中的路由守卫逻辑
-- 保持 `web/src/main.ts` 中的全局样式入口和 Element Plus 集成方式一致
-- 调整别名、代理或构建行为前，先检查 `web/vite.config.ts`
-
-修改 API 行为或数据契约时：
-
-- 必要时同步更新 `server/src/index.ts` 与 `server/src/mock-data.ts`
-- 除非任务明确要求持久化，否则保持 mock server 为内存实现
-- 优先复用现有搜索、排序、分页和树结构辅助逻辑，不要并行再造一套
+- 新逻辑优先使用 TypeScript。
+- 实现 Vue 相关代码时使用可用的 Vue skills，并优先遵循这些与仓库兼容的实践，而不是泛化的框架建议。
 
 ## 验证
 
@@ -131,8 +128,9 @@
 
 ## 代理行为
 
-- 优先做精确、最小化的改动，避免大范围重构
-- 除非任务明确要求，否则不要主动重构架构、命名或目录结构
-- 如果只改一端但可能影响前后端契约，要主动确认另一端是否也需要调整
-- 当文档与源码冲突时，以源码为准，并在安全且相关时同步更新文档
-- 如果用户再次要求初始化项目说明，先重新扫描仓库，再以增量方式更新本文档，而不是替换成通用模板
+- 优先做精确、最小化的改动，避免大范围重构。
+- 除非任务明确要求，否则不要主动重构架构、命名或目录结构。
+- 如果只改一端但可能影响前后端契约，要主动确认另一端是否也需要调整。
+- 把长期有效的知识沉淀在仓库里，而不是只留在聊天记录或个人记忆中。
+- 当文档与源码冲突时，以源码为准，并在安全且相关时同步更新文档。
+- 如果用户再次要求初始化项目说明，先重新扫描仓库，再以增量方式更新本文档，而不是替换成通用模板。

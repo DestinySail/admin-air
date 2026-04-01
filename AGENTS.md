@@ -17,6 +17,21 @@ Act as a pragmatic coding agent for this repository. Prefer the conventions alre
 
 Prefer small, targeted changes. Read nearby implementation and configuration before editing so new work matches local patterns.
 
+## Documentation System
+
+- Treat this file as a quick map, not the full encyclopedia.
+- Treat source code and executable config as the primary truth for behavior.
+- Treat `docs/` as the repository knowledge base for durable context that should be discoverable by both humans and agents.
+- Treat `CLAUDE.md` as secondary guidance that must be checked against source before trusting it.
+- When a rule becomes important enough to enforce mechanically, prefer encoding it in config, scripts, linters, or build checks instead of relying on prose alone.
+
+Read these documents before making broad changes:
+
+- `docs/index.md`: documentation map and source-of-truth order
+- `docs/repository-structure.md`: repository layout, key files, and change-entry points
+- `docs/development-workflow.md`: commands, validation, and delivery expectations
+- `docs/agent-working-guide.md`: repository-local guidance for keeping docs and agent context legible
+
 ## Repository Snapshot
 
 - Package manager: `pnpm`
@@ -26,18 +41,37 @@ Prefer small, targeted changes. Read nearby implementation and configuration bef
 - Backend stack: Hono, `@hono/node-server`, TypeScript, `tsx`
 - Quality tools: ESLint flat config, Prettier, `vue-tsc`, `tsc`
 
-Important files and directories:
+## Working In This Repository
 
-- `web/src/main.ts`: app bootstrap, Pinia, router, Element Plus, directives, icons, theme setup
-- `web/src/router/index.ts`: hash routing and auth guard
-- `web/src/stores`: Pinia stores and persisted-state usage
-- `web/src/utils/axios.ts`: shared Axios wrapper, token handling, duplicate request cancellation, notifications
-- `web/src/styles/index.scss`: global style entry
-- `web/vite.config.ts`: `/@` alias, proxy setup, chunk splitting
-- `server/src/index.ts`: in-memory mock API handlers, filtering, sorting, pagination, tree helpers, unified response shape
-- `server/src/mock-data.ts`: mock seed data and default site/layout configuration
-- `docs`: supplementary documentation; treat runnable source and config as the primary truth
-- `CLAUDE.md`: secondary collaboration guidance that should be checked against source before trusting it
+Branch workflow:
+
+- Start every task by creating a new branch from `main`; do not work directly on `main`.
+- Complete the task on that branch, merge it back into `main`, and delete the task branch after the merge.
+- Use a descriptive branch name, preferably with the `codex/` prefix unless the user requests a different naming scheme.
+
+Before editing:
+
+- Read the relevant project `package.json` and nearby config files inside `web/` or `server/`.
+- Decide whether the change belongs to `web`, `server`, or both.
+- Read the closest implementation files before changing patterns, names, or structure.
+- Check collaboration docs, but follow source and config when prose disagrees.
+- If you update durable behavior or workflow guidance, update the matching files in `docs/` instead of only editing this file.
+
+When changing the frontend:
+
+- Start from the closest route, view, store, or shared utility.
+- Keep Vue imports aligned with the existing `/@` alias style.
+- Preserve `createWebHashHistory()` routing unless a task explicitly requires a routing change.
+- Reuse `web/src/utils/axios.ts` for API requests instead of bypassing the shared wrapper.
+- Follow the existing Pinia store structure and `pinia-plugin-persistedstate` usage.
+- Keep the current auth flow intact: routes that require auth redirect to `adminLogin` when no token is present.
+
+When changing API behavior or data contracts:
+
+- Update both `server/src/index.ts` and `server/src/mock-data.ts` when needed.
+- Keep mock API responses in the `{ code, msg, data }` shape.
+- Keep the mock server in-memory unless a task explicitly asks for persistence.
+- Reuse the existing search, sort, pagination, and tree helpers instead of introducing parallel implementations.
 
 ## Tools And Commands
 
@@ -78,45 +112,8 @@ Follow project configuration instead of inventing new style rules:
 - `.editorconfig`: UTF-8, LF, spaces, default 4-space indentation
 - `web/.prettierrc.js` and `server/.prettierrc.js`: no semicolons, single quotes, `printWidth: 150`, `trailingComma: 'es5'`
 - `web/eslint.config.js` and `server/eslint.config.js`: TypeScript + Prettier flat config; the frontend config also includes Vue rules
-
-Practical conventions inferred from the codebase:
-
-- Use TypeScript for new logic
-- Use the available Vue Skills when implementing Vue-related code, and prefer those repo-compatible patterns over generic framework advice
-- Keep Vue imports aligned with the existing `/@` alias style
-- Preserve `createWebHashHistory()` routing unless a task explicitly requires a routing change
-- Reuse `web/src/utils/axios.ts` for API requests instead of bypassing the shared wrapper
-- Follow the existing Pinia store structure and `pinia-plugin-persistedstate` usage
-- Keep mock API responses in the `{ code, msg, data }` shape
-
-## Working In This Repository
-
-Branch workflow:
-
-- Start every task by creating a new branch from `main`; do not work directly on `main`
-- Complete the task on that branch, merge it back into `main`, and delete the task branch after the merge
-- Use a descriptive branch name, preferably with the `codex/` prefix unless the user requests a different naming scheme
-
-Before editing:
-
-- Read the relevant project `package.json` and nearby config files inside `web/` or `server/`
-- Decide whether the change belongs to `web`, `server`, or both
-- Check existing collaboration docs such as `CLAUDE.md`, but trust source and config over prose when they disagree
-- Read surrounding implementation before changing patterns, names, or architecture
-
-When changing the frontend:
-
-- Start from the closest route, view, store, or shared utility
-- Keep the current auth flow intact: routes that require auth redirect to `adminLogin` when no token is present
-- Preserve the router guard behavior in `web/src/router/index.ts`
-- Keep the global style entry and Element Plus integration consistent with `web/src/main.ts`
-- Check `web/vite.config.ts` before changing aliases, proxies, or build behavior
-
-When changing API behavior or data contracts:
-
-- Update both `server/src/index.ts` and `server/src/mock-data.ts` when needed
-- Keep the mock server in-memory unless a task explicitly asks for persistence
-- Reuse the existing search, sort, pagination, and tree helpers instead of introducing parallel implementations
+- Use TypeScript for new logic.
+- Use the available Vue skills when implementing Vue-related code, and prefer repository-compatible patterns over generic framework advice.
 
 ## Validation
 
@@ -131,8 +128,9 @@ There is no dedicated automated test suite configured right now, so linting, typ
 
 ## Agent Behavior
 
-- Prefer precise, minimal edits over large rewrites
-- Do not refactor architecture, naming, or directory structure unless the task clearly calls for it
-- If a one-sided change affects the frontend/backend contract, proactively verify whether the other side must change too
-- When documentation conflicts with source, follow the source and update the docs if it is safe and relevant to do so
-- If the user asks to initialize project instructions again, rescan the repo first and update this file incrementally instead of replacing it with a generic template
+- Prefer precise, minimal edits over large rewrites.
+- Do not refactor architecture, naming, or directory structure unless the task clearly calls for it.
+- If a one-sided change affects the frontend/backend contract, proactively verify whether the other side must change too.
+- Keep durable knowledge discoverable inside the repository instead of leaving it only in chat or memory.
+- When documentation conflicts with source, follow the source and update the docs if it is safe and relevant to do so.
+- If the user asks to initialize project instructions again, rescan the repo first and update this file incrementally instead of replacing it with a generic template.
