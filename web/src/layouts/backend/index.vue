@@ -1,5 +1,6 @@
 <template>
     <component :is="config.layout.layoutMode"></component>
+    <MenuSearch />
 </template>
 
 <script setup lang="ts">
@@ -21,9 +22,10 @@ import { useEventListener } from '@vueuse/core'
 import { BEFORE_RESIZE_LAYOUT } from '/@/stores/constant/cacheKey'
 import { isEmpty } from 'lodash-es'
 import { setNavTabsWidth } from '/@/utils/layout'
+import MenuSearch from '/@/layouts/backend/components/search/menuSearch.vue'
 
 defineOptions({
-    components: { Default, Classic, Streamline, Double },
+    components: { Default, Classic, Streamline, Double, MenuSearch },
 })
 
 const navTabs = useNavTabs()

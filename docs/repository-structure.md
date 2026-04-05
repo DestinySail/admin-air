@@ -17,6 +17,7 @@ admin-air
 - Frontend bootstrap: `web/src/main.ts`
 - Frontend routing and auth guard: `web/src/router/index.ts`
 - Frontend state management: `web/src/stores/`
+- Frontend backend-layout search UI: `web/src/layouts/backend/components/search/`
 - Frontend request wrapper: `web/src/utils/axios.ts`
 - Frontend global styles: `web/src/styles/index.scss`
 - Frontend build and proxy config: `web/vite.config.ts`
@@ -29,6 +30,7 @@ admin-air
 ## Read Path By Change Type
 
 - Frontend UI or routing change: start in `web/src/router/`, the target view, store, or shared utility
+- Frontend backend menu search change: start in `web/src/layouts/backend/components/search/`, `web/src/layouts/backend/components/navMenus.vue`, and `web/src/stores/menuSearch.ts`
 - API client change: start in `web/src/utils/axios.ts` and the consuming feature
 - Backend API or response-shape change: start in `server/src/modules/`, `server/src/db/schema/`, and `server/src/bootstrap/bootstrap-data.ts`
 - Build or proxy change: start in `web/vite.config.ts`

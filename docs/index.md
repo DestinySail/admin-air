@@ -19,6 +19,7 @@ Use this order when information conflicts:
 - Read structure and entry points: `docs/repository-structure.md`
 - Read commands and validation expectations: `docs/development-workflow.md`
 - Read repository-local documentation principles for agent work: `docs/agent-working-guide.md`
+- Read backend menu search behavior and entry points: `docs/frontend-menu-search.md`
 
 ## Documentation Principles
 
@@ -33,5 +34,6 @@ Use this order when information conflicts:
 - Repository structure and key entry points: covered
 - Local development workflow and validation: covered
 - Agent-facing documentation and maintenance rules: covered
+- Frontend global menu search behavior and UX constraints: covered
 
 Add new topic pages when recurring decisions or hidden context start appearing in chat, reviews, or tribal knowledge.
