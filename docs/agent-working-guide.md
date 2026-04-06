@@ -37,3 +37,4 @@ Optimize for agent legibility, not document volume. If a contributor or agent ca
 - Read nearby implementation before introducing new patterns.
 - Keep frontend and backend contract notes close to the code and mirror them in docs only when they are durable enough to be reused.
 - Treat source and config as the final arbiter when prose drifts.
+- Do not report a user-visible change as complete until browser-based MCP E2E has been run, or an explicit blocker has been documented in the handoff.

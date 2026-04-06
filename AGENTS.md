@@ -127,10 +127,12 @@ Use these checks by default in the affected project directories:
 
 - Frontend: `pnpm lint`, `pnpm typecheck`
 - Backend: `pnpm lint`, `pnpm build`
+- Also run `pnpm build` in `web/` when the change touches build behavior, proxying, or frontend/backend integration.
+- For user-visible frontend changes, route/auth changes, or frontend/backend integration changes, run browser-based MCP E2E validation before considering the task complete.
+- Prefer the currently available browser MCP tooling (for example Chrome DevTools MCP) and validate the affected user journey, not just a page load.
+- If MCP E2E cannot be completed because of environment or dependency blockers, report the blocker explicitly and do not describe the task as fully validated.
 
-Also run `pnpm build` in `web/` when the change touches build behavior, proxying, or frontend/backend integration.
-
-There is no dedicated automated test suite configured right now, so linting, type-checking, and build verification are the main quality gates. When reporting results, say exactly which commands were run and note any checks that were skipped or could not be executed.
+There is no repository-owned automated E2E suite configured right now, so linting, type-checking, build verification, and required browser-based MCP E2E checks are the main quality gates. When reporting results, say exactly which commands were run, which MCP E2E scenarios were exercised, and note any checks that were skipped or could not be executed.
 
 ## Agent Behavior
 

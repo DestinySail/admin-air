@@ -118,8 +118,26 @@ Start-Service postgresql-x64-18
 - Backend changes: `pnpm lint` and `pnpm build`
 - Frontend build, proxy, or frontend-backend integration changes: also run `pnpm build` inside `web/`
 
+## Required Browser MCP E2E
+
+Run browser-based MCP E2E validation before calling a task complete when the change affects real user flows, including:
+
+- user-visible frontend changes
+- interaction changes
+- route or auth behavior
+- frontend-backend integration behavior
+
+Execution defaults:
+
+- Use the currently available browser MCP tool. Chrome DevTools MCP is the default when it is available.
+- Validate the changed user journey end-to-end, not only that the page can render.
+- Cover at least the main success path and the most relevant regression or failure path introduced by the task.
+- Pure documentation changes or non-user-visible static configuration updates may record MCP E2E as not applicable.
+- If environment or dependency blockers prevent MCP E2E, record the blocker explicitly and do not report the task as fully validated.
+
 ## Reporting
 
 - Record the exact commands you ran.
+- Record the MCP E2E scenarios you exercised and the browser MCP tool you used.
 - Say which checks were skipped or could not be executed.
 - If docs changed because source changed, mention that explicitly in the handoff.

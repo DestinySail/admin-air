@@ -16,19 +16,28 @@ export const useSiteConfig = defineStore('siteConfig', {
             recordNumber: '',
             cdnUrlParams: '',
             initialize: false,
+            initializeFailed: false,
             userInitialize: false,
         }
     },
     actions: {
         dataFill(state: SiteConfig) {
             // 使用 this.$patch(state) 时 headNav 的类型异常，直接赋值
-            this.$state = state
+            this.$state = {
+                ...state,
+                initialize: this.initialize,
+                initializeFailed: this.initializeFailed,
+                userInitialize: this.userInitialize,
+            }
         },
         setHeadNav(headNav: RouteRecordRaw[]) {
             this.headNav = headNav
         },
         setInitialize(initialize: boolean) {
             this.initialize = initialize
+        },
+        setInitializeFailed(initializeFailed: boolean) {
+            this.initializeFailed = initializeFailed
         },
         setUserInitialize(userInitialize: boolean) {
             this.userInitialize = userInitialize

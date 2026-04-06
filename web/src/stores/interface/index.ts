@@ -63,5 +63,6 @@ export interface SiteConfig {
     recordNumber?: string
     cdnUrlParams: string
     initialize: boolean
+    initializeFailed: boolean
     userInitialize: boolean
 }

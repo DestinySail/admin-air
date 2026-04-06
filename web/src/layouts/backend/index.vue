@@ -1,10 +1,13 @@
 <template>
-    <component :is="config.layout.layoutMode"></component>
-    <MenuSearch />
+    <template v-if="siteConfig.initialize">
+        <component :is="config.layout.layoutMode"></component>
+        <MenuSearch />
+    </template>
+    <router-view v-else />
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, onBeforeMount } from 'vue'
+import { reactive, onMounted, onBeforeMount, nextTick } from 'vue'
 import { useConfig } from '/@/stores/config'
 import { useNavTabs } from '/@/stores/navTabs'
 import { useSiteConfig } from '/@/stores/siteConfig'
@@ -41,19 +44,23 @@ const state = reactive({
 onMounted(() => {
     if (!adminInfo.token) return router.push({ name: 'adminLogin' })
 
-    init()
-    setNavTabsWidth()
     useEventListener(window, 'resize', setNavTabsWidth)
+    void init()
 })
 onBeforeMount(() => {
     onAdaptiveLayout()
     useEventListener(window, 'resize', onAdaptiveLayout)
 })
 
-const init = () => {
-    index().then((res) => {
+const init = async () => {
+    siteConfig.setInitialize(false)
+    siteConfig.setInitializeFailed(false)
+    siteConfig.setUserInitialize(false)
+
+    try {
+        const res = await index()
+
         siteConfig.dataFill(res.data.siteConfig)
-        siteConfig.setInitialize(true)
         config.setLayoutMode('Default')
 
         if (!isEmpty(res.data.adminInfo)) {
@@ -63,7 +70,13 @@ const init = () => {
 
         if (res.data.menus) {
             handleAdminRoute(res.data.menus)
+        }
 
+        siteConfig.setInitialize(true)
+        await nextTick()
+        setNavTabsWidth()
+
+        if (res.data.menus) {
             if (route.params.to) {
                 const lastRoute = JSON.parse(route.params.to as string)
                 if (lastRoute.path !== '/') {
@@ -80,7 +93,13 @@ const init = () => {
             const firstRoute = getFirstRoute(navTabs.state.tabsViewRoutes)
             if (firstRoute) routePush(firstRoute.path)
         }
-    })
+    } catch {
+        siteConfig.setInitialize(false)
+        siteConfig.setUserInitialize(false)
+        if (adminInfo.token) {
+            siteConfig.setInitializeFailed(true)
+        }
+    }
 }
 
 const onAdaptiveLayout = () => {

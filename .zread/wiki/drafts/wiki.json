@@ -1,0 +1,213 @@
+{
+  "id": "2026-04-05-230449",
+  "generated_at": "2026-04-05T15:04:49.2543908Z",
+  "language": "zh",
+  "pages": [
+    {
+      "slug": "1-xiang-mu-gai-lan",
+      "title": "项目概览",
+      "file": "1-xiang-mu-gai-lan.md",
+      "section": "入门",
+      "level": "Beginner"
+    },
+    {
+      "slug": "2-kuai-su-qi-dong",
+      "title": "快速启动",
+      "file": "2-kuai-su-qi-dong.md",
+      "section": "入门",
+      "level": "Beginner"
+    },
+    {
+      "slug": "3-qian-duan-ji-zhu-zhan-yu-yi-lai",
+      "title": "前端技术栈与依赖",
+      "file": "3-qian-duan-ji-zhu-zhan-yu-yi-lai.md",
+      "section": "入门",
+      "group": "前端开发",
+      "level": "Beginner"
+    },
+    {
+      "slug": "4-qian-duan-lu-you-yu-jian-quan",
+      "title": "前端路由与鉴权",
+      "file": "4-qian-duan-lu-you-yu-jian-quan.md",
+      "section": "入门",
+      "group": "前端开发",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "5-qian-duan-zhuang-tai-guan-li",
+      "title": "前端状态管理",
+      "file": "5-qian-duan-zhuang-tai-guan-li.md",
+      "section": "入门",
+      "group": "前端开发",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "6-qian-duan-zu-jian-yu-bu-ju",
+      "title": "前端组件与布局",
+      "file": "6-qian-duan-zu-jian-yu-bu-ju.md",
+      "section": "入门",
+      "group": "前端开发",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "7-hou-duan-ji-zhu-zhan-yu-yi-lai",
+      "title": "后端技术栈与依赖",
+      "file": "7-hou-duan-ji-zhu-zhan-yu-yi-lai.md",
+      "section": "入门",
+      "group": "后端开发",
+      "level": "Beginner"
+    },
+    {
+      "slug": "8-hou-duan-lu-you-yu-mo-kuai",
+      "title": "后端路由与模块",
+      "file": "8-hou-duan-lu-you-yu-mo-kuai.md",
+      "section": "入门",
+      "group": "后端开发",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "9-shu-ju-ku-yu-schema",
+      "title": "数据库与Schema",
+      "file": "9-shu-ju-ku-yu-schema.md",
+      "section": "入门",
+      "group": "后端开发",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "10-shu-ju-chu-shi-hua-yu-seed",
+      "title": "数据初始化与Seed",
+      "file": "10-shu-ju-chu-shi-hua-yu-seed.md",
+      "section": "入门",
+      "group": "后端开发",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "11-qian-duan-gou-jian-pei-zhi",
+      "title": "前端构建配置",
+      "file": "11-qian-duan-gou-jian-pei-zhi.md",
+      "section": "深入探讨",
+      "group": "构建与配置",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "12-qian-duan-dai-li-yu-huan-jing-bian-liang",
+      "title": "前端代理与环境变量",
+      "file": "12-qian-duan-dai-li-yu-huan-jing-bian-liang.md",
+      "section": "深入探讨",
+      "group": "构建与配置",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "13-hou-duan-huan-jing-pei-zhi",
+      "title": "后端环境配置",
+      "file": "13-hou-duan-huan-jing-pei-zhi.md",
+      "section": "深入探讨",
+      "group": "构建与配置",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "14-qian-duan-qing-qiu-feng-zhuang",
+      "title": "前端请求封装",
+      "file": "14-qian-duan-qing-qiu-feng-zhuang.md",
+      "section": "深入探讨",
+      "group": "API通信",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "15-qian-hou-duan-apiqi-yue",
+      "title": "前后端API契约",
+      "file": "15-qian-hou-duan-apiqi-yue.md",
+      "section": "深入探讨",
+      "group": "API通信",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "16-qian-duan-kai-fa-ming-ling",
+      "title": "前端开发命令",
+      "file": "16-qian-duan-kai-fa-ming-ling.md",
+      "section": "深入探讨",
+      "group": "工具与命令",
+      "level": "Beginner"
+    },
+    {
+      "slug": "17-hou-duan-kai-fa-ming-ling",
+      "title": "后端开发命令",
+      "file": "17-hou-duan-kai-fa-ming-ling.md",
+      "section": "深入探讨",
+      "group": "工具与命令",
+      "level": "Beginner"
+    },
+    {
+      "slug": "18-shu-ju-ku-cao-zuo-ming-ling",
+      "title": "数据库操作命令",
+      "file": "18-shu-ju-ku-cao-zuo-ming-ling.md",
+      "section": "深入探讨",
+      "group": "工具与命令",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "19-dai-ma-zhi-liang-jian-cha",
+      "title": "代码质量检查",
+      "file": "19-dai-ma-zhi-liang-jian-cha.md",
+      "section": "深入探讨",
+      "group": "工具与命令",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "20-shou-ci-qi-dong-liu-cheng",
+      "title": "首次启动流程",
+      "file": "20-shou-ci-qi-dong-liu-cheng.md",
+      "section": "深入探讨",
+      "group": "本地开发工作流",
+      "level": "Beginner"
+    },
+    {
+      "slug": "21-ri-chang-kai-fa-qi-dong",
+      "title": "日常开发启动",
+      "file": "21-ri-chang-kai-fa-qi-dong.md",
+      "section": "深入探讨",
+      "group": "本地开发工作流",
+      "level": "Beginner"
+    },
+    {
+      "slug": "22-ben-di-fu-wu-guan-bi",
+      "title": "本地服务关闭",
+      "file": "22-ben-di-fu-wu-guan-bi.md",
+      "section": "深入探讨",
+      "group": "本地开发工作流",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "23-jing-tai-jian-cha-yan-zheng",
+      "title": "静态检查验证",
+      "file": "23-jing-tai-jian-cha-yan-zheng.md",
+      "section": "深入探讨",
+      "group": "验证与测试",
+      "level": "Intermediate"
+    },
+    {
+      "slug": "24-liu-lan-qi-e2eyan-zheng",
+      "title": "浏览器E2E验证",
+      "file": "24-liu-lan-qi-e2eyan-zheng.md",
+      "section": "深入探讨",
+      "group": "验证与测试",
+      "level": "Advanced"
+    },
+    {
+      "slug": "25-xiang-mu-gui-fan-gai-lan",
+      "title": "项目规范概览",
+      "file": "25-xiang-mu-gui-fan-gai-lan.md",
+      "section": "深入探讨",
+      "group": "编码规范",
+      "level": "Beginner"
+    },
+    {
+      "slug": "26-eslintyu-prettierpei-zhi",
+      "title": "ESLint与Prettier配置",
+      "file": "26-eslintyu-prettierpei-zhi.md",
+      "section": "深入探讨",
+      "group": "编码规范",
+      "level": "Intermediate"
+    }
+  ]
+}
