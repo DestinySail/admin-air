@@ -293,6 +293,10 @@ const messages: Record<string, string> = {
     'No ElementPlus Icons': '未检测到 Element Plus 图标',
     'No Iconfont style sheet': '未检测到 Iconfont 样式文件',
     'No Local Icons': '未检测到本地图标',
+    '404.Page title': '页面不存在',
+    '404.Page description': '你访问的内容可能已迁移、删除，或暂时无法打开。',
+    '404.Page hint': '建议返回首页重新进入，或回到上一页继续浏览。',
+    '404.Poster alt': '404 页面主视觉插画',
 }
 
 const interpolate = (template: string, named: Record<string, unknown>) => {
