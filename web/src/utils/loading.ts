@@ -1,5 +1,6 @@
 import { nextTick } from 'vue'
 import '/@/styles/loading.scss'
+import { translate as t } from '/@/utils/translate'
 
 export const loading = {
     show: () => {
@@ -7,17 +8,10 @@ export const loading = {
         const div = document.createElement('div')
         div.className = 'block-loading'
         div.innerHTML = `
-            <div class="block-loading-box">
-                <div class="block-loading-box-warp">
-                    <div class="block-loading-box-item"></div>
-                    <div class="block-loading-box-item"></div>
-                    <div class="block-loading-box-item"></div>
-                    <div class="block-loading-box-item"></div>
-                    <div class="block-loading-box-item"></div>
-                    <div class="block-loading-box-item"></div>
-                    <div class="block-loading-box-item"></div>
-                    <div class="block-loading-box-item"></div>
-                    <div class="block-loading-box-item"></div>
+            <div class="block-loading-box" role="status" aria-live="polite" aria-label="${t('utils.Loading')}">
+                <div class="ba-square-loader" aria-hidden="true">
+                    <span class="ba-square-loader__square ba-square-loader__square--lead"></span>
+                    <span class="ba-square-loader__square ba-square-loader__square--trail"></span>
                 </div>
             </div>
         `

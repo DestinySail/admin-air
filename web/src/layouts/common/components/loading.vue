@@ -1,12 +1,14 @@
 <template>
     <div class="startup-screen">
-        <div
-            v-if="!siteConfig.initializeFailed"
-            v-loading="true"
-            element-loading-background="transparent"
-            :element-loading-text="t('utils.Loading')"
-            class="startup-panel startup-panel--loading"
-        ></div>
+        <div v-if="!siteConfig.initializeFailed" class="startup-panel startup-panel--loading">
+            <div class="startup-panel__loader">
+                <div class="ba-square-loader startup-loader" aria-hidden="true">
+                    <span class="ba-square-loader__square ba-square-loader__square--lead"></span>
+                    <span class="ba-square-loader__square ba-square-loader__square--trail"></span>
+                </div>
+            </div>
+            <div class="startup-panel__title">{{ t('utils.Loading') }}</div>
+        </div>
         <div v-else class="startup-panel startup-panel--failed">
             <div class="startup-panel__status">{{ t('utils.Service unavailable') }}</div>
             <div class="startup-panel__title">{{ t('utils.Startup failed') }}</div>
@@ -23,6 +25,7 @@ import { computed, onUnmounted, reactive } from 'vue'
 import router from '/@/router/index'
 import { useSiteConfig } from '/@/stores/siteConfig'
 import { translate as t } from '/@/utils/translate'
+import '/@/styles/loading.scss'
 
 let timer: number
 
@@ -68,6 +71,32 @@ onUnmounted(() => {
     box-shadow: var(--el-box-shadow-light);
 }
 
+.startup-panel--loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.startup-panel__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 112px;
+    height: 112px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.46);
+    box-shadow:
+        0 24px 48px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.startup-loader {
+    --loader-cell-size: 22px;
+    --loader-gap: 10px;
+}
+
 .startup-panel--failed {
     display: flex;
     flex-direction: column;
@@ -89,6 +118,7 @@ onUnmounted(() => {
     font-size: 28px;
     font-weight: 700;
     color: var(--el-text-color-primary);
+    text-align: center;
 }
 
 .startup-panel__subtitle {
@@ -102,5 +132,14 @@ onUnmounted(() => {
     display: flex;
     justify-content: center;
     margin-top: 24px;
+}
+
+@at-root .dark {
+    .startup-panel__loader {
+        background: rgba(15, 23, 42, 0.42);
+        box-shadow:
+            0 24px 56px rgba(2, 6, 23, 0.22),
+            inset 0 1px 0 rgba(148, 163, 184, 0.08);
+    }
 }
 </style>
