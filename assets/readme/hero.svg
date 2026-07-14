@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">Admin-Air — Vue 3 + Hono 全栈管理后台</title>
+  <desc id="desc">双项目单体仓库：左侧是项目名称与价值说明，右侧是 web 管理台与 server 模块的结构示意。</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="55%" stop-color="#101A2E"/>
+      <stop offset="100%" stop-color="#0D1526"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16233B"/>
+      <stop offset="100%" stop-color="#121C31"/>
+    </linearGradient>
+    <linearGradient id="accentBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3F6AD8"/>
+      <stop offset="100%" stop-color="#6EC8FF"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.1" fill="#FFFFFF" opacity="0.045"/>
+    </pattern>
+    <clipPath id="frame">
+      <rect width="1200" height="380" rx="26"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="380" fill="url(#bg)"/>
+    <rect width="1200" height="380" fill="url(#dots)"/>
+
+    <!-- soft air flow lines -->
+    <path d="M-40 286 C 180 220, 320 340, 520 270 S 860 180, 1260 250" fill="none" stroke="#3F6AD8" stroke-opacity="0.14" stroke-width="1.5"/>
+    <path d="M-20 318 C 220 250, 360 360, 560 300 S 900 210, 1280 280" fill="none" stroke="#6EC8FF" stroke-opacity="0.10" stroke-width="1.2"/>
+
+    <!-- title block -->
+    <g transform="translate(56 52)">
+      <rect x="0" y="0" width="168" height="28" rx="14" fill="#3F6AD8" fill-opacity="0.14" stroke="#3F6AD8" stroke-opacity="0.45"/>
+      <circle cx="16" cy="14" r="4" fill="#6EC8FF"/>
+      <text x="28" y="18" fill="#B7C7E8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="12" font-weight="600" letter-spacing="1.2">FULL-STACK ADMIN</text>
+
+      <text x="0" y="86" fill="#F4F7FC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="58" font-weight="750" letter-spacing="-1.2">Admin-Air</text>
+      <rect x="0" y="104" width="86" height="4" rx="2" fill="url(#accentBar)"/>
+
+      <text x="0" y="148" fill="#D7E1F4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="22" font-weight="500">Vue 3 + Hono 全栈管理后台</text>
+      <text x="0" y="180" fill="#93A4C0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16">前后端独立、开箱即用的双项目单体仓库</text>
+      <text x="0" y="204" fill="#93A4C0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16">PostgreSQL + Drizzle 持久化，权限路由与后台布局齐备</text>
+
+      <!-- meta chips -->
+      <g transform="translate(0 242)">
+        <rect width="92" height="30" rx="8" fill="#16233B" stroke="#2A3B5C"/>
+        <text x="46" y="20" text-anchor="middle" fill="#C9D6EE" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">v2.3.6</text>
+
+        <rect x="102" y="0" width="88" height="30" rx="8" fill="#16233B" stroke="#2A3B5C"/>
+        <text x="146" y="20" text-anchor="middle" fill="#C9D6EE" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">Vue 3.5</text>
+
+        <rect x="200" y="0" width="88" height="30" rx="8" fill="#16233B" stroke="#2A3B5C"/>
+        <text x="244" y="20" text-anchor="middle" fill="#C9D6EE" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">Hono 4</text>
+
+        <rect x="298" y="0" width="118" height="30" rx="8" fill="#16233B" stroke="#2A3B5C"/>
+        <text x="357" y="20" text-anchor="middle" fill="#C9D6EE" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">PostgreSQL</text>
+      </g>
+    </g>
+
+    <!-- project proof: dual monorepo + admin shell -->
+    <g transform="translate(620 42)">
+      <!-- outer board -->
+      <rect x="0" y="0" width="528" height="296" rx="18" fill="url(#panel)" stroke="#2B3D60"/>
+
+      <!-- top bar -->
+      <rect x="0" y="0" width="528" height="42" rx="18" fill="#1A2740"/>
+      <rect x="0" y="24" width="528" height="18" fill="#1A2740"/>
+      <circle cx="24" cy="21" r="5" fill="#FF6B6B" fill-opacity="0.85"/>
+      <circle cx="42" cy="21" r="5" fill="#FFD166" fill-opacity="0.85"/>
+      <circle cx="60" cy="21" r="5" fill="#4CD97B" fill-opacity="0.85"/>
+      <text x="84" y="25" fill="#8EA0BF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">admin-air / dual project monorepo</text>
+
+      <!-- left: web shell -->
+      <g transform="translate(18 58)">
+        <rect width="236" height="218" rx="12" fill="#0E1728" stroke="#33486D"/>
+        <rect x="0" y="0" width="236" height="30" rx="12" fill="#152238"/>
+        <rect x="0" y="18" width="236" height="12" fill="#152238"/>
+        <text x="14" y="20" fill="#6EC8FF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700">web/</text>
+        <text x="52" y="20" fill="#8EA0BF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">Vue 3 · Vite · Pinia</text>
+
+        <!-- mini admin layout -->
+        <rect x="12" y="42" width="52" height="162" rx="8" fill="#132033" stroke="#2A3F63"/>
+        <rect x="20" y="54" width="36" height="8" rx="3" fill="#3F6AD8" fill-opacity="0.85"/>
+        <rect x="20" y="72" width="28" height="6" rx="2" fill="#4A5F84"/>
+        <rect x="20" y="86" width="32" height="6" rx="2" fill="#4A5F84"/>
+        <rect x="20" y="100" width="24" height="6" rx="2" fill="#4A5F84"/>
+        <rect x="20" y="114" width="30" height="6" rx="2" fill="#4A5F84"/>
+        <rect x="20" y="128" width="26" height="6" rx="2" fill="#4A5F84"/>
+
+        <rect x="74" y="42" width="150" height="28" rx="8" fill="#132033" stroke="#2A3F63"/>
+        <rect x="84" y="52" width="64" height="8" rx="3" fill="#5B7198"/>
+        <rect x="184" y="50" width="28" height="12" rx="6" fill="#3F6AD8" fill-opacity="0.35"/>
+
+        <rect x="74" y="80" width="150" height="56" rx="8" fill="#132033" stroke="#2A3F63"/>
+        <rect x="86" y="94" width="42" height="28" rx="6" fill="#3F6AD8" fill-opacity="0.22" stroke="#3F6AD8" stroke-opacity="0.45"/>
+        <rect x="136" y="94" width="42" height="28" rx="6" fill="#1A2A44" stroke="#33486D"/>
+        <rect x="186" y="94" width="26" height="28" rx="6" fill="#1A2A44" stroke="#33486D"/>
+
+        <rect x="74" y="146" width="150" height="58" rx="8" fill="#132033" stroke="#2A3F63"/>
+        <rect x="86" y="160" width="126" height="6" rx="2" fill="#3A4F74"/>
+        <rect x="86" y="174" width="98" height="6" rx="2" fill="#2F4264"/>
+        <rect x="86" y="188" width="112" height="6" rx="2" fill="#2F4264"/>
+      </g>
+
+      <!-- connector -->
+      <g transform="translate(254 140)">
+        <path d="M0 20 H20" stroke="#6EC8FF" stroke-width="1.6" stroke-opacity="0.7"/>
+        <path d="M12 14 L20 20 L12 26" fill="none" stroke="#6EC8FF" stroke-width="1.6" stroke-opacity="0.7"/>
+        <text x="10" y="8" text-anchor="middle" fill="#8EB4E8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10">/api</text>
+      </g>
+
+      <!-- right: server modules -->
+      <g transform="translate(274 58)">
+        <rect width="236" height="218" rx="12" fill="#0E1728" stroke="#33486D"/>
+        <rect x="0" y="0" width="236" height="30" rx="12" fill="#152238"/>
+        <rect x="0" y="18" width="236" height="12" fill="#152238"/>
+        <text x="14" y="20" fill="#6EC8FF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700">server/</text>
+        <text x="72" y="20" fill="#8EA0BF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">Hono · Drizzle · Zod</text>
+
+        <g transform="translate(14 46)">
+          <rect width="208" height="36" rx="8" fill="#132033" stroke="#2A3F63"/>
+          <circle cx="18" cy="18" r="5" fill="#3F6AD8"/>
+          <text x="34" y="16" fill="#D7E1F4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="12" font-weight="600">auth</text>
+          <text x="34" y="30" fill="#7F91B0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10">JWT · login · sessions</text>
+
+          <rect y="46" width="208" height="36" rx="8" fill="#132033" stroke="#2A3F63"/>
+          <circle cx="18" cy="64" r="5" fill="#6EC8FF"/>
+          <text x="34" y="62" fill="#D7E1F4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="12" font-weight="600">admin</text>
+          <text x="34" y="76" fill="#7F91B0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10">groups · rules · logs</text>
+
+          <rect y="92" width="208" height="36" rx="8" fill="#132033" stroke="#2A3F63"/>
+          <circle cx="18" cy="110" r="5" fill="#8AB4FF"/>
+          <text x="34" y="108" fill="#D7E1F4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="12" font-weight="600">routine</text>
+          <text x="34" y="122" fill="#7F91B0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10">config · profile · files</text>
+
+          <rect y="138" width="208" height="36" rx="8" fill="#132033" stroke="#2A3F63"/>
+          <circle cx="18" cy="156" r="5" fill="#4CD97B"/>
+          <text x="34" y="154" fill="#D7E1F4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="12" font-weight="600">db</text>
+          <text x="34" y="168" fill="#7F91B0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10">schema · migrate · seed</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

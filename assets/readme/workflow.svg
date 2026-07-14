@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220" role="img" aria-labelledby="title desc">
+  <title id="title">Admin-Air 首次启动流程</title>
+  <desc id="desc">从安装依赖、初始化数据库到分别启动 server 与 web，最后使用默认管理员账号登录。</desc>
+
+  <defs>
+    <linearGradient id="wfbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#152238"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="220" rx="22" fill="url(#wfbg)"/>
+
+  <text x="48" y="46" fill="#E8EEF8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="18" font-weight="700">首次成功路径</text>
+  <text x="48" y="70" fill="#8FA1BD" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="13">四步把本地管理后台跑起来</text>
+
+  <!-- steps -->
+  <g transform="translate(48 96)">
+    <!-- 1 -->
+    <rect width="240" height="84" rx="14" fill="#1A2740" stroke="#314766"/>
+    <circle cx="28" cy="28" r="14" fill="#3F6AD8"/>
+    <text x="28" y="33" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700">1</text>
+    <text x="52" y="26" fill="#DCE6F8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="14" font-weight="650">准备环境</text>
+    <text x="52" y="48" fill="#8FA1BD" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">Node ≥ 20.19</text>
+    <text x="52" y="66" fill="#8FA1BD" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">PostgreSQL + pnpm</text>
+
+    <path d="M250 42 H274" stroke="#6EC8FF" stroke-width="1.6" stroke-opacity="0.7"/>
+    <path d="M266 36 L274 42 L266 48" fill="none" stroke="#6EC8FF" stroke-width="1.6" stroke-opacity="0.7"/>
+
+    <!-- 2 -->
+    <g transform="translate(284 0)">
+      <rect width="240" height="84" rx="14" fill="#1A2740" stroke="#314766"/>
+      <circle cx="28" cy="28" r="14" fill="#3F6AD8"/>
+      <text x="28" y="33" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700">2</text>
+      <text x="52" y="26" fill="#DCE6F8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="14" font-weight="650">初始化后端</text>
+      <text x="52" y="48" fill="#8FA1BD" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">cd server</text>
+      <text x="52" y="66" fill="#8FA1BD" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">pnpm db:setup</text>
+    </g>
+
+    <path d="M534 42 H558" stroke="#6EC8FF" stroke-width="1.6" stroke-opacity="0.7"/>
+    <path d="M550 36 L558 42 L550 48" fill="none" stroke="#6EC8FF" stroke-width="1.6" stroke-opacity="0.7"/>
+
+    <!-- 3 -->
+    <g transform="translate(568 0)">
+      <rect width="240" height="84" rx="14" fill="#1A2740" stroke="#314766"/>
+      <circle cx="28" cy="28" r="14" fill="#3F6AD8"/>
+      <text x="28" y="33" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700">3</text>
+      <text x="52" y="26" fill="#DCE6F8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="14" font-weight="650">双端启动</text>
+      <text x="52" y="48" fill="#8FA1BD" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">server: pnpm dev</text>
+      <text x="52" y="66" fill="#8FA1BD" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">web: pnpm dev</text>
+    </g>
+
+    <path d="M818 42 H842" stroke="#6EC8FF" stroke-width="1.6" stroke-opacity="0.7"/>
+    <path d="M834 36 L842 42 L834 48" fill="none" stroke="#6EC8FF" stroke-width="1.6" stroke-opacity="0.7"/>
+
+    <!-- 4 -->
+    <g transform="translate(852 0)">
+      <rect width="252" height="84" rx="14" fill="#1A2740" stroke="#314766"/>
+      <circle cx="28" cy="28" r="14" fill="#0F766E"/>
+      <text x="28" y="33" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700">4</text>
+      <text x="52" y="26" fill="#DCE6F8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="14" font-weight="650">登录后台</text>
+      <text x="52" y="48" fill="#8FA1BD" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">http://localhost:5173</text>
+      <text x="52" y="66" fill="#8FA1BD" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">admin / AdminAir_2026</text>
+    </g>
+  </g>
+</svg>

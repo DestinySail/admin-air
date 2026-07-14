@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Admin-Air 运行架构</title>
+  <desc id="desc">浏览器中的 Vue 前端通过 Vite 代理访问 Hono 后端，后端使用 Drizzle 连接 PostgreSQL，并提供上传文件服务。</desc>
+
+  <defs>
+    <linearGradient id="board" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F7F9FC"/>
+      <stop offset="100%" stop-color="#EEF2F8"/>
+    </linearGradient>
+    <linearGradient id="cardA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F4F7FB"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3F6AD8"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="420" rx="26" fill="url(#board)" stroke="#D7DFEC"/>
+
+  <!-- header -->
+  <text x="56" y="52" fill="#1F2A3D" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="24" font-weight="700">运行时结构</text>
+  <text x="56" y="80" fill="#5F6F88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="14">本地开发时，前端 5173 通过代理把 /api 与 /admin 转到后端 8787</text>
+  <rect x="56" y="96" width="72" height="4" rx="2" fill="#3F6AD8"/>
+
+  <!-- browser / web -->
+  <g transform="translate(56 120)">
+    <rect width="300" height="256" rx="18" fill="url(#cardA)" stroke="#C9D5E8"/>
+    <rect x="0" y="0" width="300" height="44" rx="18" fill="#3F6AD8"/>
+    <rect x="0" y="26" width="300" height="18" fill="#3F6AD8"/>
+    <text x="20" y="28" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" font-weight="700">web/</text>
+    <text x="62" y="28" fill="#D7E4FF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">:5173</text>
+
+    <text x="20" y="72" fill="#1F2A3D" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="14" font-weight="600">Vue 3 · Vite · Element Plus</text>
+
+    <g transform="translate(20 88)">
+      <rect width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="21" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">router  权限守卫 · Hash 路由</text>
+      <rect y="40" width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="61" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">stores  Pinia 持久化状态</text>
+      <rect y="80" width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="101" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">axios   /@/utils/axios 封装</text>
+      <rect y="120" width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="141" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">layouts classic / default / double</text>
+    </g>
+  </g>
+
+  <!-- connector 1 -->
+  <g>
+    <line x1="372" y1="248" x2="436" y2="248" stroke="#3F6AD8" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="404" y="234" text-anchor="middle" fill="#3F6AD8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700">proxy</text>
+    <text x="404" y="270" text-anchor="middle" fill="#6B7C95" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">/api · /admin</text>
+  </g>
+
+  <!-- server -->
+  <g transform="translate(450 120)">
+    <rect width="300" height="256" rx="18" fill="url(#cardA)" stroke="#C9D5E8"/>
+    <rect x="0" y="0" width="300" height="44" rx="18" fill="#1F3A73"/>
+    <rect x="0" y="26" width="300" height="18" fill="#1F3A73"/>
+    <text x="20" y="28" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" font-weight="700">server/</text>
+    <text x="88" y="28" fill="#C7D7F5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">:8787</text>
+
+    <text x="20" y="72" fill="#1F2A3D" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="14" font-weight="600">Hono · Zod · Jose</text>
+
+    <g transform="translate(20 88)">
+      <rect width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="21" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">modules/auth · admin · routine</text>
+      <rect y="40" width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="61" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">response  { code, msg, data }</text>
+      <rect y="80" width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="101" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">security  JWT · password hash</text>
+      <rect y="120" width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="141" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">uploads   本地文件访问</text>
+    </g>
+  </g>
+
+  <!-- connector 2 -->
+  <g>
+    <line x1="766" y1="248" x2="830" y2="248" stroke="#3F6AD8" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="798" y="234" text-anchor="middle" fill="#3F6AD8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700">Drizzle</text>
+    <text x="798" y="270" text-anchor="middle" fill="#6B7C95" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">SQL · migrate</text>
+  </g>
+
+  <!-- postgres -->
+  <g transform="translate(844 120)">
+    <rect width="300" height="256" rx="18" fill="url(#cardA)" stroke="#C9D5E8"/>
+    <rect x="0" y="0" width="300" height="44" rx="18" fill="#0F766E"/>
+    <rect x="0" y="26" width="300" height="18" fill="#0F766E"/>
+    <text x="20" y="28" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" font-weight="700">PostgreSQL</text>
+    <text x="128" y="28" fill="#CFFAFE" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">local</text>
+
+    <text x="20" y="72" fill="#1F2A3D" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="14" font-weight="600">schema · seed · sessions</text>
+
+    <g transform="translate(20 88)">
+      <rect width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="21" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">admins · groups · rules</text>
+      <rect y="40" width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="61" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">sessions · admin_logs</text>
+      <rect y="80" width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="101" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">attachments · bootstrap seed</text>
+      <rect y="120" width="260" height="32" rx="8" fill="#EEF3FB" stroke="#D5DFEE"/>
+      <text x="14" y="141" fill="#334155" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">db:setup  generate→migrate→seed</text>
+    </g>
+  </g>
+</svg>
